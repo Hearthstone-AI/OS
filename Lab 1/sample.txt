@@ -1,0 +1,29 @@
+willy@williams-VirtualBox:~/Desktop/OS/Lab 1$ ./part3
+starting batch-shell
+Current directory is: /home/willy/Desktop/OS/Lab 1
+
+batch-shell> part1 part1 part1 hi
+
+Starting program: part1, pid: 2977
+Grandchild process with process ID 2979 has completed.
+Child process with process ID 2978 has completed.
+Parent process with process ID 2977 has completed.
+
+Starting program: part1, pid: 2980
+Grandchild process with process ID 2982 has completed.
+Child process with process ID 2981 has completed.
+Parent process with process ID 2980 has completed.
+
+Starting program: part1, pid: 2983
+Grandchild process with process ID 2985 has completed.
+Child process with process ID 2984 has completed.
+Parent process with process ID 2983 has completed.
+
+Starting program: hi, pid: 2986
+ERROR: No such file or directory
+
+Program: hi, pid: 2976 encountered a nonfatal error
+
+batch-shell> quit
+willy@williams-VirtualBox:~/Desktop/OS/Lab 1$ 
+
