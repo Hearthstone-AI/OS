@@ -1,3 +1,21 @@
+Running Part 1
+
+Grandchild process with process ID 2640 has completed.
+Child process with process ID 2639 has completed.
+Parent process with process ID 2638 has completed.
+
+
+Running Part 2
+
+I have another terminal running that has process ID 2807
+
+Enter a process to kill: 
+2807             
+Killing 2807 ...
+
+
+Running Part 3
+
 willy@williams-VirtualBox:~/Desktop/OS/Lab 1$ ./part3
 starting batch-shell
 Current directory is: /home/willy/Desktop/OS/Lab 1
