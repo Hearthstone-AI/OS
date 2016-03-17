@@ -3,8 +3,8 @@
 #include <pthread.h>
 #include <semaphore.h>
 
-#define MAX_RUNTIME 10
-#define BUFFER_SIZE 10
+#define MAX_RUNTIME 10 //Max runtime of a request
+#define BUFFER_SIZE 10 //Max size of the buffer
 
 /* The mutex lock */
 pthread_mutex_t mutex;
@@ -12,18 +12,18 @@ pthread_mutex_t mutex;
 /* The semaphores */
 sem_t full, empty;
 
-/* Buffer counter */
+/* Buffer counter, also represents the current position */
 int counter;
 
 pthread_t tid;       //Thread ID
 pthread_attr_t attr; //Set of thread attributes
-int id = 1;
-int consumerID = 0;
+int id = 1; //ID for the requests, first request gets ID 1
+int consumerID = 0; //ID for the consumers, first consumer gets ID 1
 
 /* A struct representing the request */
 typedef struct _request{
-  int tid; 
-  int secs;
+  int tid; //Request ID
+  int secs; //Request duration
 } request;
 
 /* The buffer */
@@ -60,9 +60,10 @@ void *producer(void *param) {
 
       time ( &rawtime );
       timeinfo = localtime ( &rawtime );
-
+      
+      /* Insert the request */
       if(insertRequest(item)) 
-         fprintf(stderr, " Producer report error condition\n");
+         fprintf(stderr, "Producer reports problem inserting request.\n");
       
       else 
          printf("Producer: produced request ID %d, length %d seconds at time %s\n",item->tid,item->secs,asctime (timeinfo));
@@ -100,7 +101,7 @@ void *consumer(void *param) {
       timeinfo = localtime ( &rawtime );
 
       if(item == -1) 
-         fprintf(stderr, "Consumer report error condition.\n");
+         fprintf(stderr, "Consumer reports error removing request.\n");
 
       else {
          /* Report the completion of the request */

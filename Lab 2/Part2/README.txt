@@ -5,6 +5,7 @@ Part 2 Report
 
 Scheduler in C
 
+There is one file, main.c
 The class consists of 4 methods:
 Producer : The producer thread, creates a request and uses the insertRequestmethod to add it to the queue.
 Consumer: The consumer thread, removes a request from the queue using removeRequestand process it.

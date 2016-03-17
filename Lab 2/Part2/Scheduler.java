@@ -3,48 +3,49 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Vector;
 
+//Scheduler contains the main method, but also extends Thread and represents the producer with its run method.
 class Scheduler extends Thread {
 
-	static int buff_size = 10;
-	static int numCons = 10;
-	int id = 0;
-	static int conID = 0;
-	private Vector<Request> requests = new Vector<Request>();
+	static int buff_size = 10; //Size of the buffer.
+	static int numCons = 10; //Number of consumers.
+	int id = 0; //Request ID, starts at 0.
+	static int conID = 0; //ID of the consumer.
+	private Vector<Request> requests = new Vector<Request>(); //The queue, vector works with syncronization.
 	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
 
 	public static void main(String args[]) {
 
-		// Creates a new producer that handles the creation of new requests
+		// Creates a new producer that handles the creation of new requests.
 		Scheduler producer = new Scheduler();
 
-		// Creates numCons consumers, then runs them
+		// Creates numCons consumers, then runs them.
 		for (int i = 0; i < numCons; i++) {
 			new Consumer(producer, ++conID).start();
 		}
-		// The producer is then ran
+		// The producer is then ran.
 		producer.start();
 	}
 
-	//Run method for the producer
+	//Run method for the producer.
 	public void run() {
 		try {
 			while (true) {
-				// Sleep for a random time
+				// Sleep for a random time.
 				Thread.sleep((int) Math.random() * 100);
-				// Generate request and add it to queue
+				// Generate request and add it to queue.
 				addRequest();
 
 				// Generate a new random time, and sleep for it.
-				int sl = (int) Math.floor(Math.random() * 400);
-				System.out.println("Sleeping for " + sl + " milliseconds");
-				Thread.sleep(sl);
+				int s = (int) Math.floor(Math.random() * 400);
+				System.out.println("Sleeping for " + s + " milliseconds");
+				Thread.sleep(s);
 			}
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
 	}
 
-	//Add a request to the queue
+	//Add a request to the queue and prints the production message.
 	private synchronized void addRequest() throws InterruptedException {
 		// Waits if queue is full.
 		while (requests.size() == buff_size) {
@@ -57,14 +58,14 @@ class Scheduler extends Thread {
 				+ " milliseconds at time " + dateFormat.format(Calendar.getInstance().getTime()));
 		requests.add(r);
 
-		// Let any waiting consumers know that there's something in the queue
+		// Let any waiting consumers know that there's something in the queue.
 		notify();
 
 	}
-
+	//Removes a request from the queue and returns it.
 	public synchronized Request removeRequest() throws InterruptedException {
 
-		// If the list is empty, then it waits
+		// If the list is empty, then it waits.
 		while (requests.size() == 0) {
 			wait();
 		}
@@ -78,13 +79,14 @@ class Scheduler extends Thread {
 	}
 }
 
-
+//Class for handling consumers.
 class Consumer extends Thread {
-
-	Scheduler producer;
-	int id;
+	
+	Scheduler producer; //Reference to the producer
+	int id; //Id of the consumer
 	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-
+	
+	//Constructor for creating a new consumer
 	Consumer(Scheduler prod, int id) {
 		this.id = id;
 		this.producer = producer;
