@@ -1,0 +1,61 @@
+OUTPUT FOR C:
+
+Producer: produced request ID 1, length 6 seconds at time Wed Mar 16 22:57:04 2016
+
+Producer: sleeping for 4 seconds.
+Consumer: 4  assigned request ID 1, processing request for the next 6 seconds, current time is Wed Mar 16 22:57:04 2016
+
+Consumer: 10  completed request ID 1 at time Wed Mar 16 22:57:04 2016
+
+Producer: produced request ID 2, length 8 seconds at time Wed Mar 16 22:57:10 2016
+
+Producer: sleeping for 8 seconds.
+Consumer: 10  assigned request ID 2, processing request for the next 8 seconds, current time is Wed Mar 16 22:57:10 2016
+
+Consumer: 10  completed request ID 2 at time Wed Mar 16 22:57:10 2016
+
+Producer: produced request ID 3, length 4 seconds at time Wed Mar 16 22:57:18 2016
+
+Producer: sleeping for 1 seconds.
+Consumer: 10  assigned request ID 3, processing request for the next 4 seconds, current time is Wed Mar 16 22:57:18 2016
+
+Consumer: 10  completed request ID 3 at time Wed Mar 16 22:57:18 2016
+
+Producer: produced request ID 4, length 3 seconds at time Wed Mar 16 22:57:22 2016
+
+Producer: sleeping for 4 seconds.
+Consumer: 10  assigned request ID 4, processing request for the next 3 seconds, current time is Wed Mar 16 22:57:22 2016
+
+Program finished.
+
+OUTPUT FOR JAVA: 
+
+Producer: Produced request ID 1, length of 307.0 milliseconds at time 2016/03/17 00:44:56
+Consumer: 1 assigned request ID 1 processing request for the next 307.0 milliseconds, current time is 2016/03/17 00:44:56
+Sleeping for 206 milliseconds
+Producer: Produced request ID 2, length of 304.0 milliseconds at time 2016/03/17 00:44:56
+Consumer: 3 assigned request ID 2 processing request for the next 304.0 milliseconds, current time is 2016/03/17 00:44:56
+Sleeping for 31 milliseconds
+Producer: Produced request ID 3, length of 350.0 milliseconds at time 2016/03/17 00:44:56
+Sleeping for 154 milliseconds
+Consumer: 5 assigned request ID 3 processing request for the next 350.0 milliseconds, current time is 2016/03/17 00:44:56
+Consumer: 1 completed request ID 1 at time 2016/03/17 00:44:56
+Producer: Produced request ID 4, length of 334.0 milliseconds at time 2016/03/17 00:44:56
+Sleeping for 86 milliseconds
+Consumer: 7 assigned request ID 4 processing request for the next 334.0 milliseconds, current time is 2016/03/17 00:44:56
+Producer: Produced request ID 5, length of 251.0 milliseconds at time 2016/03/17 00:44:57
+Sleeping for 162 milliseconds
+Consumer: 9 assigned request ID 5 processing request for the next 251.0 milliseconds, current time is 2016/03/17 00:44:57
+Consumer: 3 completed request ID 2 at time 2016/03/17 00:44:57
+Consumer: 5 completed request ID 3 at time 2016/03/17 00:44:57
+Producer: Produced request ID 6, length of 244.0 milliseconds at time 2016/03/17 00:44:57
+Sleeping for 213 milliseconds
+Consumer: 2 assigned request ID 6 processing request for the next 244.0 milliseconds, current time is 2016/03/17 00:44:57
+Consumer: 7 completed request ID 4 at time 2016/03/17 00:44:57
+Consumer: 9 completed request ID 5 at time 2016/03/17 00:44:57
+Producer: Produced request ID 7, length of 4.0 milliseconds at time 2016/03/17 00:44:57
+Sleeping for 386 milliseconds
+Consumer: 6 assigned request ID 7 processing request for the next 4.0 milliseconds, current time is 2016/03/17 00:44:57
+Consumer: 6 completed request ID 7 at time 2016/03/17 00:44:57
+Consumer: 2 completed request ID 6 at time 2016/03/17 00:44:57
+
