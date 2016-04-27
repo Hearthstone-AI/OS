@@ -24,10 +24,10 @@ int main(void){
 	    myfile >> n >> m;
 	    
 	    //Adds addresses to the mems array by skipping the first two lines, m and n
-	    for (int lineno = 0; getline (myfile,line); lineno++){
-	    	if (lineno == 0)
+	    for (int i = 0; getline (myfile,line); i++){
+	    	if (i == 0)
 	    		continue;
-	    	if (lineno == 1)
+	    	if (i == 1)
 	    		continue;
 	    	else{
 	    		//Converts the string number to an unsigned int
@@ -42,11 +42,10 @@ int main(void){
 	    //Determine the page numbers and offsets for each address
 	    for (int i = 0; i < total; i++){ 
 	    	//Bitmask for n
-	    	int nMask = pow(2, n+1) - 1;
+	    	int bitMask = pow(2, n+1) - 1;
 
-	    	
     		unsigned int page = mems[i]>>n; //Page number
-    		unsigned int offset = mems[i]&nMask; //Offset
+    		unsigned int offset = mems[i]&bitMask; //Offset
     		
 
     		printf("Virtual address %d is in page number %d and offset %d\n",mems[i],page,offset);
