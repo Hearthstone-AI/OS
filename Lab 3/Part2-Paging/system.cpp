@@ -102,10 +102,10 @@ public:
 		//Begin buffer copy
 		memcpy(buf, freeblocklist, 128);
 		for (int i = 0; i < 16; i++) {
-			memcpy(buf, inodes[i].name + 128 + 48 * i, 8);
-			memcpy(buf, &(inodes[i].size) + 136 + 48 * i, 4);
-			memcpy(buf, inodes[i].blockPointers + 140 + 48 * i, 32);
-			memcpy(buf, &inodes[i].used + 172 + 48 * i, 4);
+			memcpy(buf + 128 + 48 * i, inodes[i].name, 8);
+			memcpy(buf + 136 + 48 * i, &(inodes[i].size), 4);
+			memcpy(buf + 140 + 48 * i, inodes[i].blockPointers, 32);
+			memcpy(buf + 172 + 48 * i, &inodes[i].used, 4);
 		}
 		for (int i = 728; i < 1024; i++) {
 			buf[i] = 0;
@@ -113,6 +113,7 @@ public:
 		//Begin Transfer
 		disk.seekp(0);
 		disk.write(buf, 1024);
+		disk.flush();
 		return 0; //Successful return
 	}
 
@@ -136,10 +137,10 @@ public:
 		//Begin buffer copy
 		memcpy(buf, freeblocklist, 128);
 		for (int i = 0; i < 16; i++) {
-			memcpy(buf, inodes[i].name + 128 + 48 * i, 8);
-			memcpy(buf, &(inodes[i].size) + 136 + 48 * i, 4);
-			memcpy(buf, inodes[i].blockPointers + 140 + 48 * i, 32);
-			memcpy(buf, &inodes[i].used + 172 + 48 * i, 4);
+			memcpy(buf + 128 + 48 * i, inodes[i].name, 8);
+			memcpy(buf + 136 + 48 * i, &(inodes[i].size), 4);
+			memcpy(buf + 140 + 48 * i, inodes[i].blockPointers, 32);
+			memcpy(buf + 172 + 48 * i, &inodes[i].used, 4);
 		}
 		for (int i = 728; i < 1024; i++) {
 			buf[i] = 0;
@@ -147,6 +148,7 @@ public:
 		//Begin Transfer
 		disk.seekp(0);
 		disk.write(buf, 1024);
+		disk.flush();
 		return 0; //Successful return
 	}
 
@@ -173,6 +175,7 @@ public:
 		}
 		disk.seekp((1 + inodes[nodeindex].blockPointers[blockNum]) * 1024);
 		disk.write(buff, 1024);
+		disk.flush();
 		return 0; //Successful return
 	}
 
@@ -242,7 +245,7 @@ void returnHandle(int code) {
 
 
 //Main loop for the whole program. Simply runs the main loop of FileSystem.
-int main(int argc, char *argv[]) {
+int main(int argc, char* argv[]) {
 	//Dummy Buffer
 	char dummy[1024];
 	for (int i = 0; i < 1024; i++) {
